@@ -1,5 +1,5 @@
 <?php
-$favourite_site = 'web';
+$favourite_site = 'medical';
  
 switch ($favourite_site) {
   case 'Business':
