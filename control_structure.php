@@ -20,4 +20,10 @@ switch ($favourite_site) {
   default:
     echo "I like everything at tutsplus.com!";
 }
+echo "<br>";
+
+for ($i=1; $i<=10; ++$i)
+{
+  echo sprintf("The square of %d is %d.</br>", $i, $i*$i);
+}
 ?>
