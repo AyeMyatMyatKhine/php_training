@@ -20,21 +20,25 @@
 </style>
 <body>
   <div class="container">
-  <form method="post">
-        <label>Enter your birthday:</label>
-        <input type="date" name="datetimepicker" class="dob">
-        <input type="submit" name="submit" value="Calculate Age">
+    <form method="post">
+      <label>Enter your birthday:</label>
+      <input type="date" name="datetimepicker" class="dob">
+      <input type="submit" name="submit" value="Calculate Age">
     </form>
     <?php
-        if(isset($_POST['submit'])) {
-            $dob=$_POST['datetimepicker'];
-
-            $bday=new DateTime($dob);
-            $today = date("Y-m-d");
-            $age=$bday -> diff(new DateTime);
-            echo "<br>";
-            echo 'Your Age is '.$age->format('%y');
+      if(isset($_POST['submit'])) {
+        $bday = $_POST['datetimepicker'];
+        $today = date("d-m-Y");
+        if(strtotime($bday) < strtotime($today)){
+          $age = date_diff(date_create($today), date_create($bday));
+          echo "<br>";
+          echo 'Your Age is ' .$age -> format('%y');
         }
+        else {
+          echo "<br>";
+          echo 'your date is wrong';
+        }
+      }
     ?>
   </div>
 </body>
