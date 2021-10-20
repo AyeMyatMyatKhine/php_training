@@ -1,0 +1,3 @@
+Typically, a CSV file uses a comma (,) to separate fields in a CSV file. If the field content also contains a comma(,), the CSV file surrounds that field with double quotes, e.g., “Facebook, Inc..”
+
+Besides using the comma (,) character, a CSV file may use other characters to separate fields such as semicolon (;).
