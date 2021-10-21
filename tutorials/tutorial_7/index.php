@@ -15,14 +15,14 @@
   </div>
   <?php 
      if(isset($_POST['generate_text'])) {
-        include('phpqrcode/qrlib.php');
-         $folder = "images/";
-         $file_name = $folder.uniqid().".png";
-         $text = $_POST['qr_text'];
-         QRcode::png($text , $file_name , 'L' , 10);
-         echo "<img src='".$file_name."'>";
+        include "phpqrcode/qrlib.php";
+        $text = $_POST['qr_text'];
+        $folder = "images/";
+        $file_name = $folder . $text .".png";
+        QRcode::png($text , $file_name , 'L' , 10);
+        echo "<img src='$file_name'>";
 
-         //QRcode::png($text);
+        QRcode::png($text);
       }
   ?>
 </body>
