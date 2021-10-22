@@ -32,7 +32,7 @@
         $tmpName = $_FILES["userImg"]["tmp_name"];
 
         $folder = $_POST['folder'];
-        if($folder) mkdir($folder);
+        if(!$folder) mkdir($folder);
 
         $target_file = "$folder/" . $imgName ;
 
