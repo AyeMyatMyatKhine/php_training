@@ -24,7 +24,7 @@
         <div class="col-md-12">
           <div class="mt-5 mb-3 clearfix">
             <h2 class="pull-left">Carbon Emission Table</h2>
-            <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Record</a>
+            <a href="create.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New Record</a>
           </div>
           <?php
             require_once 'database.php';
@@ -67,8 +67,8 @@
             mysqli_close($connection);
          ?>
         </div>
-        <div class="mt-3 float-right">
-          <a href="tutorial_9.php" class="btn btn-success">Show Bar Graph</a>
+        <div class="mt-3 ml-3">
+          <a href="tutorial_9.php" class="btn btn-primary">Show Bar Graph</a>
         </div>
       </div>        
     </div>
