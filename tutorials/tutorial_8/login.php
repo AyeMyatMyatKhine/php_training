@@ -33,7 +33,7 @@
     <div class="row justify-content-sm-center mt-5">
       <div class="col-sm-6">
         <h3 class="text-center">Log In</h3>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="index.php" method="post" enctype="multipart/form-data">
           <div class="form-group mt-4">
             <input type="text" name="username" class="form-control" placeholder="Your name" required>
           </div>
