@@ -1,16 +1,70 @@
 <?php
-include "database.php";
-$fetchData= fetch_data($connection);
-
-function fetch_data($connection){
-  $query = "SELECT * from carbon_emission ORDER BY id DESC";
-  $exec = mysqli_query($connection, $query);
-  if(mysqli_num_rows($exec)>0){
-    $row = mysqli_fetch_all($exec, MYSQLI_ASSOC);
-    return $row;  
+if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+  require_once "database.php";
+    
+  $sql = "SELECT * FROM carbon_emission WHERE id = ?";
+  if($stmt = mysqli_prepare($connection, $sql)) {
+    mysqli_stmt_bind_param($stmt, "i", $param_id);
+    $param_id = trim($_GET["id"]);
+    if(mysqli_stmt_execute($stmt)){
+      $result = mysqli_stmt_get_result($stmt);
+    
+      if(mysqli_num_rows($result) == 1){
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $country = $row["Country"];
+        $carbon_rate = $row["CarbonRate"];
+      } 
+      else{
+        header("location: error.php");
+        exit();
+      }
+    } 
+    else{
+      echo "Oops! Something went wrong. Please try again later.";
+    }
   }
-  else{
-    return $row = [];
-  }
+  mysqli_stmt_close($stmt);
+  mysqli_close($connection);
+} 
+else{
+  header("location: error.php");
+  exit();
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Data</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+        .wrapper{
+            width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+<body>
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mt-5 mb-3">View Record</h1>
+          <div class="form-group">
+            <label>Country</label>
+            <p><b><?php echo $row["Country"]; ?></b></p>
+          </div>
+          <div class="form-group">
+            <label>Carbon Rate</label>
+            <p><b><?php echo $row["CarbonRate"]; ?></b></p>
+          </div>
+          <p><a href="index.php" class="btn btn-primary">Back</a></p>
+        </div>
+      </div>        
+    </div>
+  </div>
+</body>
+</html>
