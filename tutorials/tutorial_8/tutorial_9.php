@@ -18,7 +18,7 @@ include "database.php";
   <title>Bar graph for carbon emission rate</title>
 </head>
 <body>
-  <div style="width:60%;hieght:20%;text-align:center">
+  <div style="width:60%; height:20%; text-align:center">
     <h2 class="page-header" >Carbon Emission Reports</h2>
     <canvas  id="chartjs_bar"></canvas> 
   </div>    
